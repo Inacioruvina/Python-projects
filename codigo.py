@@ -1,3 +1,4 @@
+arquivo = open ("products.txt","a")
 products = []
 
 while True :
@@ -7,7 +8,7 @@ while True :
     print ("[4]Mostrar Todos")
     print ("[5]Consultar (Código)")
     print ("[6]Consultar (Nome)")
-    print ("[7]Sair")
+    print ("[7]Salvar e sair")
     variant = int (input ("selecione uma opção:" ))
     
     match variant:
@@ -15,18 +16,23 @@ while True :
         case 1:
             print ("Insira as seguintes informações referentes ao produto")
             code = input ("Código do produto:")
+            category = input ("Digite a categoria em que o produto se encaixa")
             name = input ("Nome do produto:")
             balance = input ("Quantidade do produto:")
             value = input ("Valor do produto:")
             
             info = {
                 "code": code,
+                "category": category,
                 "name": name,
                 "balance": balance,
                 "value": value
             }
             
             products.append(info)
+            
+            arquivo.write(code + "\n" + category + "\n" + name + "\n" + balance "\n" + value + "\n")
+            
             
             
         case 2:
@@ -45,6 +51,12 @@ while True :
                     if yn == "y":
                         cods = input ("Digite o novo codigo: ")
                         products[i]["code"] = cods
+                    
+                    yn = input ("Deseja alterar a categoria?[y][n]")
+                    
+                    if yn == "y":
+                        categors = input ("Digite a nova categoria: ")
+                        products[i]["category"] = categors
                             
                     yn = input ("Deseja alterar o nome?[y][n]")
                     if yn == "y":
@@ -77,12 +89,7 @@ while True :
             
         case 4:  
             
-            for numero, info in enumerate (products, start =1):
-                print (numero, "-")
-                print (info["code"])  
-                print (info["name"])
-                print (info["balance"])
-                print (info["value"])  
+            show_all() 
             
         case 5:
             
@@ -99,7 +106,8 @@ while True :
                 if info ["code"] == codp :
                 
                     print ("Produto encontrado")
-                    print (info["code"])  
+                    print (info["code"]) 
+                    print (info["category"]) 
                     print (info["name"])
                     print (info["balance"])
                     print (info["value"])
@@ -120,10 +128,11 @@ while True :
             
             founds = False
             for info in products :
-                if info ["name"] == namp :
+                if namp.lower() in info["name"].lower():
                 
                     print ("Produto encontrado")
-                    print (info["code"])  
+                    print (info["code"]) 
+                    print (info["category"]) 
                     print (info["name"])
                     print (info["balance"])
                     print (info["value"])
@@ -137,6 +146,16 @@ while True :
             
         case 7:
             
-            print ("Saindo do sistema")
+            print("Salvando dados...")
+            arquivo.close()
+            print("Saindo do sistema...")
             break
         
+        
+    
+    def show_all () {
+        arquivo = open("products.txt","r")
+        
+        for linha in arquivo:
+            print ("linha")
+    }
