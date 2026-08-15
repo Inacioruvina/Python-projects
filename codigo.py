@@ -85,15 +85,12 @@ while True:
     match variant:
 
         case 1:
-
             print("Insira as seguintes informações referentes ao produto")
-
             code = input("Código do produto: ")
             category = input("Digite a categoria em que o produto se encaixa: ")
             name = input("Nome do produto: ")
             balance = input("Quantidade do produto: ")
             value = input("Valor do produto: ")
-
             info = {
                 "code": code,
                 "category": category,
@@ -103,7 +100,6 @@ while True:
             }
 
             products.append(info)
-
             save_products()
 
             print("Produto cadastrado com sucesso!")
@@ -111,7 +107,7 @@ while True:
         case 2:
 
             for numero, info in enumerate(products, start=1):
-                print(numero, "-", info["name"])
+                print(numero, "-", info["name"]) 
 
             i = int(
                 input(
@@ -162,7 +158,7 @@ while True:
         case 3:
 
             for numero, info in enumerate(products, start=1):
-                print(numero, "-", info["name"])
+                print(numero, "-", info["name"]) 
 
             i = int(
                 input(
@@ -173,7 +169,6 @@ while True:
             if 0 <= i < len(products):
 
                 products.pop(i)
-
                 save_products()
 
                 print("Produto deletado com sucesso!")
@@ -188,6 +183,10 @@ while True:
 
         case 5:
 
+            for numero, info in enumerate(products, start=1):
+                print(numero, "-", info["code"]) 
+
+            print("Qual o codigo do produto que deseja acessar?")
             codp = input("Digite o código do produto: ")
 
             found = False
@@ -213,10 +212,13 @@ while True:
                 print("Produto inválido")
 
         case 6:
+        case 6:
 
-            namp = input(
-                "Digite parte do nome do produto a ser pesquisado: "
-            )
+            for numero, info in enumerate(products, start=1):
+                print(numero, "-", info["code"]) 
+
+            print("Qual o nome do produto que deseja acessar?")
+            namp = input("Digite parte do nome do produto a ser pesquisado: ")
 
             founds = False
 
@@ -235,7 +237,6 @@ while True:
                     founds = True
 
             if not founds:
-
                 print("Produto inválido")
 
         case 7:
@@ -244,9 +245,12 @@ while True:
 
             print("Salvando dados...")
             print("Saindo do sistema...")
+            print("Salvando dados...")
+            print("Saindo do sistema...")
 
             break
 
         case _:
 
             print("Opção inválida.")
+
